@@ -1,13 +1,137 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Mako&display=swap");
+@import url("http://fonts.cdnfonts.com/css/sawasdee");
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Mako";
+  position: relative;
+  min-height: 100vh;
+  color: #333;
 }
+
+.navbar {
+  width: 100%;
+  height: 100px;
+  background-color: #f6f6f6;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.25);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.navbar img {
+  cursor: pointer;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 8rem;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 10px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ff6161;
+}
+
+.game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  padding-top: 90px;
+  padding-bottom: 12rem;
+}
+
+.btn {
+  font-family: "Sawasdee";
+  width: 160px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border: none;
+  border-radius: 5px;
+  font-size: 24px;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn img {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #ff6161;
+  color: white;
+  font-weight: bold;
+}
+
+.choices {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.choices > * {
+  margin: 20px;
+}
+
+.dice {
+  width: 80px;
+}
+
+.answer {
+  width: 160px;
+  height: 50px;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 5px;
+}
+
+.win {
+  background-color: #4fcb63;
+}
+
+.defeat {
+  background-color: #df3434;
+}
+/*# sourceMappingURL=index.css.map */
