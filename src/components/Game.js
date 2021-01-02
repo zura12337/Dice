@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import ButtonIcon from "../assets/perspective-dice-six-faces-random.svg";
 import Dice from "./Dice";
+import Stats from "./Stats";
 
 export default function Game() {
   const [userChoice, setUserChoice] = useState();
@@ -43,6 +44,7 @@ export default function Game() {
 
   return (
     <div className="game">
+      <Stats />
       {!isStarted ? (
         <div>
           <h1>Play Dice Against AI</h1>
