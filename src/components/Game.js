@@ -2,35 +2,44 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import ButtonIcon from "../assets/perspective-dice-six-faces-random.svg";
-import one from "../assets/dice-faces/one.svg";
-import two from "../assets/dice-faces/two.svg";
-import three from "../assets/dice-faces/three.svg";
-import four from "../assets/dice-faces/four.svg";
-import five from "../assets/dice-faces/five.svg";
-import six from "../assets/dice-faces/six.svg";
-
-const numberToDice = {
-  1: one,
-  2: two,
-  3: three,
-  4: four,
-  5: five,
-  6: six,
-};
+import Dice from "./Dice";
 
 export default function Game() {
   const [userChoice, setUserChoice] = useState();
   const [AIChoice, setAIChoice] = useState();
   const [isStarted, setIsStarted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isStarted) {
-      const userChoice = Math.floor(Math.random() * 6 + 1);
-      const AIChoice = Math.floor(Math.random() * 6 + 1);
-      setAIChoice(AIChoice);
-      setUserChoice(userChoice);
+      play();
     }
   }, [isStarted]);
+
+  const play = () => {
+    setLoading(true);
+  };
+
+  useEffect(() => {
+    let userChoice;
+    let AIChoice;
+    if (loading) {
+      const interval = setInterval(() => {
+        userChoice = Math.floor(Math.random() * 6 + 1);
+        AIChoice = Math.floor(Math.random() * 6 + 1);
+        setAIChoice(AIChoice);
+        setUserChoice(userChoice);
+      }, 100);
+      setTimeout(() => {
+        setLoading(false);
+        clearInterval(interval);
+      }, 1100);
+    }
+  }, [loading]);
+
+  const handleStart = () => {
+    setIsStarted(!isStarted);
+  };
 
   return (
     <div className="game">
@@ -43,25 +52,51 @@ export default function Game() {
             style={{
               marginTop: "20px",
             }}
-            onClick={() => setIsStarted(!isStarted)}
+            onClick={handleStart}
           />
         </div>
       ) : (
-        <div className="choices">
-          <div className="dice">
-            <img
-              src={numberToDice[userChoice]}
-              alt="dice"
-              className="dice-img"
-            />
+        <>
+          <div className="answers">
+            {loading ? (
+              <>
+                <h5>You: ?</h5>
+                <h5>AI: ?</h5>
+              </>
+            ) : (
+              <>
+                <h5>You: {userChoice}</h5>
+                <h5>AI: {AIChoice}</h5>
+              </>
+            )}
           </div>
-          <div className={`answer ${userChoice > AIChoice ? "win" : "defeat"}`}>
-            {userChoice > AIChoice ? "You Win!" : "You Lose"}
+          <div className="choices">
+            <Dice number={userChoice} />
+            {loading ? (
+              <div className="answer">???</div>
+            ) : (
+              <div
+                className={`answer ${
+                  userChoice > AIChoice
+                    ? "win"
+                    : userChoice === AIChoice
+                    ? "tie"
+                    : "defeat"
+                }`}
+              >
+                {userChoice > AIChoice
+                  ? "You Win!"
+                  : userChoice === AIChoice
+                  ? "Tie"
+                  : "You Lose"}
+              </div>
+            )}
+            <Dice number={AIChoice} />
           </div>
-          <div className="dice">
-            <img src={numberToDice[AIChoice]} alt="dice" className="dice-img" />
+          <div className="restart">
+            <Button title="Play Again" onClick={play} />
           </div>
-        </div>
+        </>
       )}
     </div>
   );
