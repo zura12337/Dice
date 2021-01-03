@@ -16,8 +16,7 @@ export default function Stats({ stats }) {
     let wins = [];
     let draws = [];
     let losses = [];
-    stats.map((stat) => {
-      console.log(stat);
+    stats.forEach((stat) => {
       if (stat.status === "win") {
         wins.push(stat);
       } else if (stat.status === "draw") {
