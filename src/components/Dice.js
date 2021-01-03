@@ -1,10 +1,10 @@
 import React from "react";
-import one from "../assets/dice-faces/one.svg";
-import two from "../assets/dice-faces/two.svg";
-import three from "../assets/dice-faces/three.svg";
-import four from "../assets/dice-faces/four.svg";
-import five from "../assets/dice-faces/five.svg";
-import six from "../assets/dice-faces/six.svg";
+import one from "../assets/white-theme/dice-faces/one.svg";
+import two from "../assets/white-theme/dice-faces/two.svg";
+import three from "../assets/white-theme/dice-faces/three.svg";
+import four from "../assets/white-theme/dice-faces/four.svg";
+import five from "../assets/white-theme/dice-faces/five.svg";
+import six from "../assets/white-theme/dice-faces/six.svg";
 
 const numberToDice = {
   1: one,

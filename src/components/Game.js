@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
-import ButtonIcon from "../assets/perspective-dice-six-faces-random.svg";
+import ButtonIcon from "../assets/white-theme/perspective-dice-six-faces-random.svg";
 import Dice from "./Dice";
 import Stats from "./Stats";
 import useStatistics from "../hooks/useStatistics";
