@@ -4,12 +4,14 @@ import Button from "./Button";
 import ButtonIcon from "../assets/perspective-dice-six-faces-random.svg";
 import Dice from "./Dice";
 import Stats from "./Stats";
+import useStatistics from "../hooks/useStatistics";
 
 export default function Game() {
   const [userChoice, setUserChoice] = useState();
   const [AIChoice, setAIChoice] = useState();
   const [isStarted, setIsStarted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [stats, setStats] = useStatistics([]);
 
   useEffect(() => {
     if (isStarted) {
@@ -30,10 +32,24 @@ export default function Game() {
         AIChoice = Math.floor(Math.random() * 6 + 1);
         setAIChoice(AIChoice);
         setUserChoice(userChoice);
-      }, 100);
+      }, 50);
       setTimeout(() => {
         setLoading(false);
         clearInterval(interval);
+        userChoice = Math.floor(Math.random() * 6 + 1);
+        AIChoice = Math.floor(Math.random() * 6 + 1);
+        setUserChoice(userChoice);
+        setAIChoice(AIChoice);
+        const stat = {
+          id: stats.length,
+          status:
+            userChoice > AIChoice
+              ? "win"
+              : userChoice === AIChoice
+              ? "draw"
+              : "lose",
+        };
+        setStats((stats) => [...stats, stat]);
       }, 1100);
     }
   }, [loading]);
@@ -44,7 +60,7 @@ export default function Game() {
 
   return (
     <div className="game">
-      <Stats />
+      <Stats stats={stats} />
       {!isStarted ? (
         <div>
           <h1>Play Dice Against AI</h1>
@@ -82,14 +98,14 @@ export default function Game() {
                   userChoice > AIChoice
                     ? "win"
                     : userChoice === AIChoice
-                    ? "tie"
+                    ? "draw"
                     : "defeat"
                 }`}
               >
                 {userChoice > AIChoice
                   ? "You Win!"
                   : userChoice === AIChoice
-                  ? "Tie"
+                  ? "Draw"
                   : "You Lose"}
               </div>
             )}

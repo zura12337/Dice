@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
+import { CgClose } from "react-icons/cg";
 
-export default function Stats() {
+export default function Stats({ stats }) {
   const [open, setOpen] = useState(false);
+  const [wins, setWins] = useState();
+  const [draws, setDraws] = useState();
+  const [losses, setLosses] = useState();
 
   const toggleOpen = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    let wins = [];
+    let draws = [];
+    let losses = [];
+    stats.map((stat) => {
+      console.log(stat);
+      if (stat.status === "win") {
+        wins.push(stat);
+      } else if (stat.status === "draw") {
+        draws.push(stat);
+      } else {
+        losses.push(stat);
+      }
+    });
+    setWins(wins);
+    setDraws(draws);
+    setLosses(losses);
+  }, [stats]);
 
   return (
     <>
@@ -18,10 +41,10 @@ export default function Stats() {
       >
         <button
           onClick={toggleOpen}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", textAlign: "center", fontWeight: "bold" }}
           className="statistics"
         >
-          Stats
+          Show Statistics
         </button>
       </CSSTransition>
       <CSSTransition
@@ -33,12 +56,12 @@ export default function Stats() {
         <div className="statistics">
           <div className="stats-inner">
             <button onClick={toggleOpen} className="close-statistics">
-              X
+              <CgClose />
             </button>
           </div>
-          <p>wins: 1</p>
-          <p>losses: 0</p>
-          <p>draws: 0</p>
+          <p>wins: {wins && wins.length}</p>
+          <p>draws: {draws && draws.length}</p>
+          <p>losses: {losses && losses.length}</p>
         </div>
       </CSSTransition>
     </>

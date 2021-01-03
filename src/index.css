@@ -78,8 +78,8 @@ footer a {
   width: 150px;
   text-align: left;
   padding: 15px 20px;
-  top: 4%;
-  right: 2%;
+  top: 2%;
+  right: 0.7%;
   background-color: #f3f3f3;
   border-radius: 10px;
   color: #444;
@@ -193,7 +193,7 @@ footer a {
   background-color: #df3434;
 }
 
-.tie {
+.draw {
   background-color: #5d72d3;
 }
 
